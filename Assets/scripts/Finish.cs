@@ -2,28 +2,18 @@ using UnityEngine;
 
 public class Finish : MonoBehaviour
 {
+    public GameObject winText;
+    public EnemyChase enemy;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("YOU WIN!");
+            winText.SetActive(true);
 
-            Time.timeScale = 0f; // Game stop
-        }
-    }
+            enemy.gameEnded = true;
 
-    private void OnGUI()
-    {
-        if (Time.timeScale == 0f)
-        {
-            GUIStyle style = new GUIStyle();
-            style.fontSize = 40;
-            style.normal.textColor = Color.green;
-
-            GUI.Label(new Rect(Screen.width / 2 - 100,
-                               Screen.height / 2 - 25,
-                               200, 50),
-                               "YOU WIN!", style);
+            Time.timeScale = 0f;
         }
     }
 }
