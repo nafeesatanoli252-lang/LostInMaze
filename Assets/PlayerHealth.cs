@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health")]
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
 
     [Header("UI")]
     public Slider healthSlider;
@@ -15,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public Color halfHealthColor = Color.yellow;
     public Color lowHealthColor = Color.red;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
 
@@ -29,16 +30,16 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
 
-        // Health ko 0 se neeche na jane do
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (currentHealth < 0)
+            currentHealth = 0;
 
         UpdateHealthBar();
 
-        Debug.Log("Player Health: " + currentHealth);
+        Debug.Log("Player Health : " + currentHealth);
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Player Died");
+            Die();
         }
     }
 
@@ -46,19 +47,20 @@ public class PlayerHealth : MonoBehaviour
     {
         healthSlider.value = currentHealth;
 
-        float healthPercent = (float)currentHealth / maxHealth;
+        float percent = (float)currentHealth / maxHealth;
 
-        if (healthPercent > 0.5f)
-        {
+        if (percent > 0.5f)
             fillImage.color = fullHealthColor;
-        }
-        else if (healthPercent > 0.2f)
-        {
+        else if (percent > 0.2f)
             fillImage.color = halfHealthColor;
-        }
         else
-        {
             fillImage.color = lowHealthColor;
-        }
+    }
+
+    void Die()
+    {
+        Debug.Log("GAME OVER");
+
+        // Future me Game Over panel yahan show karenge.
     }
 }
