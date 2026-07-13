@@ -10,6 +10,9 @@ EditorBuildSettings:
     guid: 9ac1a088502f8cc4ea6aa4251c4358e5
   - enabled: 1
     path: Assets/Scenes/LostInMaze.unity
+    guid: 8175ae0c488fb5348a8af9b6eebe8097
+  - enabled: 1
+    path: Assets/Scenes/MazeScene.unity
     guid: 89e7561bca5dcba49ba4bcdcc3b0d6dd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

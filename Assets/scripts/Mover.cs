@@ -6,8 +6,26 @@ public class ZombieAI : MonoBehaviour
     public float moveSpeed = 2f;
     public float stoppingDistance = 1.5f;
 
+    private Animator animator;
+
+    void Start()
+    {
+        Debug.Log("Start Running");
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
+        {
+            Debug.Log("Animator NOT Found");
+        }
+        else
+        {
+            Debug.Log("Animator Found");
+        }
+    }
+
     void Update()
     {
+        Debug.Log("ZombieAI Running");
         if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
@@ -21,6 +39,12 @@ public class ZombieAI : MonoBehaviour
             );
 
             transform.LookAt(player);
+
+            animator.SetFloat("Speed", 1f);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f);
         }
     }
 }
